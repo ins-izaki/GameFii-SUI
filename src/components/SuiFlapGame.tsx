@@ -16,18 +16,18 @@ const getGameDimensions = () => {
     BIRD_SIZE: Math.min(vw * 0.05, 40), // 5% of viewport width, capped at 40px
     PIPE_WIDTH: Math.min(vw * 0.1, 80), // 10% of viewport width, capped at 80px
     PIPE_GAP: Math.min(vh * 0.3, 300), // 30% of viewport height, capped at 200px
-    GRAVITY: 0.6 * (Math.min(vw, vh) / 600), // Scale gravity based on smaller dimension
-    JUMP_FORCE: -12 * (Math.min(vw, vh) / 600), // Scale jump force
-    PIPE_SPEED: 2 * (vw / 800), // Scale pipe speed based on width
+    GRAVITY: 0.12* (Math.min(vw, vh) / 600), // Scale gravity based on smaller dimension
+    JUMP_FORCE: -3 * (Math.min(vw, vh) / 600), // Scale jump force
+    PIPE_SPEED: 1 * (vw / 800), // Scale pipe speed based on width
   };
 };
 
 // Character options
 const CHARACTERS = [
-  { id: 'Puldeng', name: 'Puldeng', emoji: '🦛', color: 'bg-blue-400' },
-  { id: 'Pigu', name: 'Pigu', emoji: '🐧', color: 'bg-blue-400' },
+  { id: 'Puldeng', name: 'Puldeng', emoji: '🦛', color: 'bg-white-400' },
+  { id: 'Pingu', name: 'Pingu', emoji: '🐧', color: 'bg-purple-400' },
   { id: 'Blub', name: 'Blub', emoji: '🐟', color: 'bg-blue-400' },
-  { id: 'Mitsuki', name: 'Mitsuki', emoji: '🐈', color: 'bg-blue-400' }
+  { id: 'Mitsuki', name: 'Mitsuki', emoji: '🐈', color: 'bg-orange-400' }
 ];
 
 const SuiFlapGame = () => {
@@ -49,7 +49,7 @@ const SuiFlapGame = () => {
   
   // Bird state
   const [bird, setBird] = useState({
-    x: window.innerWidth * 0.125, // 12.5% of viewport width
+    x: window.innerWidth * 0.155, // 12.5% of viewport width
     y: window.innerHeight / 2,
     velocity: 0
   });
@@ -61,7 +61,7 @@ const SuiFlapGame = () => {
   // Game loop
   const gameLoopRef = useRef();
   const menuAnimationRef = useRef();
-  const [lastPipeSpawn, setLastPipeSpawn] = useState(0);
+  const [lastPipeSpawn, setLastPipeSpawn] = useState(120);
   const [lastMenuPipeSpawn, setLastMenuPipeSpawn] = useState(0);
   
   // Audio refs
@@ -122,7 +122,7 @@ const SuiFlapGame = () => {
       if (!newValue && themeSongRef.current) {
         themeSongRef.current.pause();
       } else if (newValue && gameState === 'menu' && themeSongRef.current) {
-        themeSongRef.current.play().catch(e => console.log('Audio play failed:', e));
+        themeSongRef.current.play().catch(e => console.log('Audio play auto:', e));
       }
       return newValue;
     });
@@ -132,7 +132,7 @@ const SuiFlapGame = () => {
   const playSound = (audioRef) => {
     if (audioRef.current && isSoundEnabled) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(e => console.log('Audio play failed:', e));
+      audioRef.current.play().catch(e => console.log('Audio play auto:', e));
     }
   };
   
@@ -170,7 +170,7 @@ const SuiFlapGame = () => {
       return;
     }
     
-    if (menuPipes.length === 0) {
+    if (menuPipes.length === null) {
       initMenuPipes();
       return;
     }
@@ -480,7 +480,7 @@ const SuiFlapGame = () => {
               <img src="/suiflap_logo_2.png" alt="suiflap" width={50} height={50}/>
               <h1 className="text-4xl font-bold text-center mb-2 text-sky-600">SuiFlap</h1>
             </div>
-            <p className="text-center text-gray-600 mb-6">Flap your SUI memes!</p>
+            <p className="text-center text-gray-600 mb-6">Flap your SUI memes! </p>
           </div>
           
           <div className="flex gap-2 mb-4">
@@ -500,7 +500,7 @@ const SuiFlapGame = () => {
                 }`}
                 title={isSoundEnabled ? 'Sound On' : 'Sound Off'}
               >
-                {isSoundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
+                {isSoundEnabled ? <Volume2 size={30} /> : <VolumeX size={30} />}
               </button>
             </div>
           </div>
@@ -554,7 +554,7 @@ const SuiFlapGame = () => {
           </div>
           
           <div className="mt-4 text-center space-y-1">
-            <p className="text-gray-600">🏆 High Score: 125</p>
+            <p className="text-gray-600">🏆 High Score: 150</p>
             <p className="text-green-600">🪙 Total Tokens Earned: {balance} SLAP</p>
           </div>
           
@@ -672,7 +672,7 @@ const SuiFlapGame = () => {
               ) : (
                 <button
                   onClick={() => setGameState("menu")}
-                  className="w-60 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 rounded-lg transition-colors transform hover:scale-105 cursor-pointer"
+                  className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 cursor-pointer"
                 >
                   🏡 Back to Menu
                 </button>
