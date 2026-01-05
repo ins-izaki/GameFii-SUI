@@ -6,7 +6,7 @@ export function OwnedObjects() {
   const { data, isPending, error } = useSuiClientQuery(
     "getOwnedObjects",
     {
-      owner: account?.address as {string},
+      owner: account?.address!,
     },
     {
       enabled: !!account,

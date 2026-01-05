@@ -15,7 +15,7 @@ export function WalletStatus() {
           <Text>Address: {account.address}</Text>
         </Flex>
       ) : (
-        <Text>Wallet not connected</Text>
+        <Text>Wallet is not connected, please reconnect</Text>
       )}
       <OwnedObjects />
     </Container>

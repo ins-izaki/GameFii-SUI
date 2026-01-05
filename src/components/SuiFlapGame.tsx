@@ -480,7 +480,7 @@ const SuiFlapGame = () => {
               <img src="/suiflap_logo_2.png" alt="suiflap" width={50} height={50}/>
               <h1 className="text-4xl font-bold text-center mb-2 text-sky-600">SuiFlap</h1>
             </div>
-            <p className="text-center text-gray-600 mb-6">Flap your SUI memes! </p>
+            <p className="text-center text-gray-600 mb-6">Flap your SUI memes! is a simple gamefi app where you control a character flying through pipe obstacles to infinity and beyond until you get an amazing score.</p>
           </div>
           
           <div className="flex gap-2 mb-4">
