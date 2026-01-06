@@ -482,7 +482,7 @@ const SuiFlapGame = () => {
             </div>
             <p className="text-center text-gray-600 mb-6">Flap your SUI memes! is a simple gamefi app where you control a character flying through pipe obstacles to infinity and beyond until you get an amazing score.</p>
           </div>
-          
+        
           <div className="flex gap-2 mb-4">
             <div className="flex-1">
               <ConnectButton className="w-full" />
@@ -670,19 +670,19 @@ const SuiFlapGame = () => {
                   🪙 Mint $SLAP
                 </button>
               ) : (
-                <button
+                <div
                   onClick={() => setGameState("menu")}
                   className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 cursor-pointer"
                 >
                   🏡 Back to Menu
-                </button>
+                </div>
               )}
-              <button
+              <div
                 onClick={startGame}
                 className="w-full bg-slate-500 hover:bg-slate-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors transform hover:scale-105 cursor-pointer"
               >
                 🔄 Play Again
-              </button>
+              </div>
             </div>
           </div>
         </div>
